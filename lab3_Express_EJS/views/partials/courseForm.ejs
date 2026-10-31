@@ -1,0 +1,35 @@
+<% if (errors.length > 0) { %>
+    <div class="error-box">
+        <strong>Проверьте данные:</strong>
+        <ul>
+            <% errors.forEach(error => { %><li><%= error %></li><% }) %>
+        </ul>
+    </div>
+<% } %>
+
+<form class="course-form" method="POST" action="<%= action %>">
+    <label>Название дисциплины
+        <input type="text" name="title" value="<%= course.title || '' %>" required>
+    </label>
+    <label>Преподаватель
+        <input type="text" name="teacher" value="<%= course.teacher || '' %>" required>
+    </label>
+    <label>Количество кредитов
+        <input type="number" name="credits" min="1" value="<%= course.credits || '' %>" required>
+    </label>
+    <label>Семестр
+        <select name="semester" required>
+            <option value="">Выберите семестр</option>
+            <% for (let number = 1; number <= 8; number++) { %>
+                <option value="<%= number %>" <%= String(course.semester) === String(number) ? 'selected' : '' %>>
+                    <%= number %>
+                </option>
+            <% } %>
+        </select>
+    </label>
+    <label>Описание
+        <textarea name="description" rows="5" required><%= course.description || '' %></textarea>
+    </label>
+    <button class="button button-primary" type="submit"><%= buttonText %></button>
+    <a class="button button-light" href="/courses">Отмена</a>
+</form>

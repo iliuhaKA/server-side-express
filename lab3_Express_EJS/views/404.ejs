@@ -1,0 +1,10 @@
+<%- include('partials/header') %>
+
+<section class="error-page">
+    <h1>404 Not Found</h1>
+    <p>Страница или курс не найдены.</p>
+    <p>Запрошенный URL: <code><%= url || 'не указан' %></code></p>
+    <a class="button button-primary" href="/courses">К списку курсов</a>
+</section>
+
+<%- include('partials/footer') %>

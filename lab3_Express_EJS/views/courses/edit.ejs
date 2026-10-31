@@ -1,0 +1,6 @@
+<%- include('../partials/header') %>
+
+<h1>Редактирование курса</h1>
+<%- include('../partials/courseForm', {course, errors, action: `/courses/${course.id}/edit`, buttonText: 'Сохранить изменения'}) %>
+
+<%- include('../partials/footer') %>
