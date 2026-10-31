@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог фильмов</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 30px auto; padding: 0 15px; color: #222; }
+        h1 { margin-bottom: 5px; }
+        form { margin: 15px 0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px 10px; text-align: left; }
+        th { background: #f0f0f0; }
+        .empty { color: #777; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Каталог фильмов</h1>
+
+    <form method="GET" action="/movies">
+        <label>Жанр:
+            <input type="text" name="genre" value="<%= genre %>" placeholder="например, sci-fi">
+        </label>
+        <button type="submit">Фильтровать</button>
+        <a href="/movies">Сбросить</a>
+    </form>
+
+    <% if (movies.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Жанр</th>
+                    <th>Год</th>
+                    <th>Режиссёр</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% movies.forEach(movie => { %>
+                    <tr>
+                        <td><%= movie.id %></td>
+                        <td><%= movie.title %></td>
+                        <td><%= movie.genre %></td>
+                        <td><%= movie.year %></td>
+                        <td><%= movie.director %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p class="empty">Фильмы не найдены.</p>
+    <% } %>
+</body>
+</html>
